@@ -7,8 +7,10 @@ import java.util.Properties;
 public class Main {
     public static void main(String[] args) {
         try {
+            // Create Properties object
             Properties properties = new Properties();
 
+            // Load the properties file from resources
             try (InputStream input = Main.class.getClassLoader()
                     .getResourceAsStream("db.properties")) {
 
@@ -17,17 +19,21 @@ public class Main {
                     return;
                 }
 
+                // Load properties from input stream
                 properties.load(input);
 
+                // Display the properties
                 System.out.println("Database Configuration:");
                 System.out.println("Driver: " + properties.getProperty("driverClassName"));
                 System.out.println("URL: " + properties.getProperty("url"));
                 System.out.println("Username: " + properties.getProperty("username"));
                 System.out.println("Password: " + properties.getProperty("password"));
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+
 
