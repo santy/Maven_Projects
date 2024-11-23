@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- With variables in pom.xml
+    <!-- With variables in pom.xml-->
     <profiles>
         <profile>
             <id>dev</id>
@@ -35,9 +35,9 @@
             </properties>
         </profile>
     </profiles>
--->
+<!--
 
-    <!--With variables in the path of each user, this is a good practice for managing differents enviroments-->
+
 
     <profiles>
         <profile>
@@ -72,12 +72,25 @@
         </profile>
     </profiles>
 
-
+-->
 
 
 
     <build>
         <plugins>
+            <!-- Add this plugin configuration -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>  <!-- Update to a newer version -->
+                <configuration>
+                    <source>19</source>
+                    <target>19</target>
+                    <release>19</release>
+                </configuration>
+            </plugin>
+
+            <!-- Your existing plugins -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -90,6 +103,11 @@
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
             </plugin>
         </plugins>
     </build>
