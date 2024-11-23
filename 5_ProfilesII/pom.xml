@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- With variables in pom.xml
     <profiles>
         <profile>
             <id>dev</id>
@@ -34,16 +35,64 @@
             </properties>
         </profile>
     </profiles>
+-->
+
+    <!--With variables in the path of each user, this is a good practice for managing differents enviroments-->
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/profiles/dev</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/profiles/prod</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+
+
+
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>
+                                org.example.Main
+                            </mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
-
 
 
 </project>
